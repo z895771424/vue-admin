@@ -1,5 +1,14 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import './style.css';
+import App from './App.vue';
+import router, { setupRouter } from '@/router/index';
+console.log(import.meta.env);
+async function bootstrap() {
+  const app = createApp(App);
+  setupRouter(app);
 
-createApp(App).mount('#app')
+  await router.isReady();
+  app.mount('#app');
+}
+
+bootstrap();
