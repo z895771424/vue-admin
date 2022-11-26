@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import validate from '@/validate';
+import validate from '@/plugins/validate';
 const { useForm, useField } = validate;
 
 const { handleSubmit, errors } = useForm({

@@ -6,6 +6,6 @@ const props = defineProps(['modelValue']);
 </template>
 <style scoped lang="scss">
 .xl-input {
-  @apply border-2 p-1 rounded-md  mb-6 h-10;
+  @apply w-full border-2 p-1 rounded-md  mb-6 h-10;
 }
 </style>

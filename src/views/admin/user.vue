@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  route: { path: '/user' }
+  // route: { path: '/user' }
 };
 </script>
 

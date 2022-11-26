@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import v from '@/validate';
+import v from '@/plugins/validate';
 const { Form, Field } = v;
 
 const onSubmit = () => {

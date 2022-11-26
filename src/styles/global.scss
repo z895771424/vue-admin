@@ -1,3 +1,12 @@
 .xl-input {
-  @apply border-2 p-1 rounded-md  mb-6 h-10;
+  @apply w-full border-2 p-1 rounded-md   h-10;
+}
+
+.xl-error {
+  @apply border bg-red-800 text-white rounded-md px-3 mt-1;
+}
+
+.xl-button {
+  // @apply w-full bg-emerald-700 py-2 rounded-md text-white transition ease-in-out delay-150  hover:-translate-y-1 hover: scale-110  hover:  duration-300;
+  @apply w-full bg-emerald-700 py-2 rounded-md text-white transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-emerald-500 duration-200;
 }
