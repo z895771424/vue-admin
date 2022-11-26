@@ -1,4 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
+import env from '../utils/env';
+
+
 
 /**
  * 路由自动注册
@@ -13,7 +16,6 @@ function getRoutes() {
   const layoutsRouter = [] as RouteRecordRaw[];
 
   Object.entries(layouts).forEach(([file, module]) => {
-    console.log(module);
     const route = getRouteByModule(file, module);
     route.children = getRouteChild(route);
     layoutsRouter.push(route);
@@ -45,4 +47,6 @@ function getRouteChild(layoutsRoute: RouteRecordRaw) {
   return childrenRoutes;
 }
 
-export default getRoutes();
+
+
+export default  env.VITE_ROUTE_AUTOLOAD? getRoutes():[] as RouteRecordRaw [];
