@@ -1,6 +1,4 @@
-import utils from '@/utils';
 import { RouteRecordRaw } from 'vue-router';
-import env from '../utils/env';
 
 /**
  * 路由自动注册
@@ -46,4 +44,4 @@ function getRouteChild(layoutsRoute: RouteRecordRaw) {
   return childrenRoutes;
 }
 
-export default utils.env.VITE_ROUTE_AUTOLOAD ? getRoutes() : ([] as RouteRecordRaw[]);
+export default getRoutes();

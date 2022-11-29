@@ -1,12 +1,12 @@
 import { App } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import layoutsRouter from './autoload';
 import guard from './guard';
 import routes from './routers';
+import autoloadRouter from './autoload';
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...routes, ...layoutsRouter]
+  routes: [...routes, ...autoloadRouter]
 });
 
 guard(router);

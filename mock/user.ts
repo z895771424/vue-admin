@@ -26,5 +26,19 @@ export default [
         }
       };
     }
+  },
+  {
+    url: '/api/user/info',
+    method: 'get',
+    response: () => {
+      return {
+        code: 200,
+        result: {
+          name: '兴隆',
+          head: '/images/head.jpg',
+          permisson: []
+        }
+      };
+    }
   }
 ] as MockMethod[];

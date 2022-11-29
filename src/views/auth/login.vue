@@ -15,15 +15,16 @@ const onSubmit = async (value: any) => {
   const {
     result: { token }
   } = await getUserInfoApi(value);
-  store.set('token', { expire: 5, token });
-  router.push({ name: 'longlong' });
+  store.set('token', { expire: 100000, token });
+  router.push({ name: 'home' });
 };
 </script>
 
 <script lang="ts">
 export default {
   route: {
-    name: 'login'
+    // 游客身份才能访问的页面
+    meta: { guest: true }
   }
 };
 </script>
