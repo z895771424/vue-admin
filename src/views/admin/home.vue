@@ -20,39 +20,41 @@ const cards = [
 </script>
 
 <template>
-  <div class="grid md:grid-cols-4 gap-3">
-    <el-card v-for="(item, index) in cards" :key="index" shadow="hover">
-      <template #header>
-        <div class="flex justify-between items-center">
-          <span>{{ item.title }}</span>
-          <el-tag type="danger" size="small" effect="dark">月</el-tag>
-        </div>
-      </template>
-      <article>
-        <section class="flex justify-between items-center text-3xl">
-          <span>${{ item.price }}</span>
-          <i :class="[item.icon, item.iconColor]"></i>
-        </section>
-        <section class="flex justify-between items-center mt-6">
-          <span>{{ item.totalTitle }}</span>
-          <span>{{ item.total }}</span>
-        </section>
-      </article>
-    </el-card>
+  <div>
+    <div class="grid md:grid-cols-4 gap-3">
+      <el-card v-for="(item, index) in cards" :key="index" shadow="hover">
+        <template #header>
+          <div class="flex justify-between items-center">
+            <span>{{ item.title }}</span>
+            <el-tag type="danger" size="small" effect="dark">月</el-tag>
+          </div>
+        </template>
+        <article>
+          <section class="flex justify-between items-center text-3xl">
+            <span>${{ item.price }}</span>
+            <i :class="[item.icon, item.iconColor]"></i>
+          </section>
+          <section class="flex justify-between items-center mt-6">
+            <span>{{ item.totalTitle }}</span>
+            <span>{{ item.total }}</span>
+          </section>
+        </article>
+      </el-card>
+    </div>
+    <article class="mt-2 grid md:grid-cols-2 gap-3 rounded-[4px]">
+      <el-card shadow="hover">
+        <template #header>
+          <h1 class="text-xl">数据统计</h1>
+        </template>
+        <barEcharts></barEcharts>
+      </el-card>
+      <el-card shadow="hover">
+        <template #header>
+          <h1 class="text-xl">业务管理</h1>
+        </template>
+        <pie-echarts></pie-echarts>
+      </el-card>
+    </article>
   </div>
-  <article class="mt-2 grid md:grid-cols-2 gap-3 rounded-[4px]">
-    <el-card shadow="hover">
-      <template #header>
-        <h1 class="text-xl">数据统计</h1>
-      </template>
-      <barEcharts></barEcharts>
-    </el-card>
-    <el-card shadow="hover">
-      <template #header>
-        <h1 class="text-xl">业务管理</h1>
-      </template>
-      <pie-echarts></pie-echarts>
-    </el-card>
-  </article>
 </template>
 <style scoped></style>

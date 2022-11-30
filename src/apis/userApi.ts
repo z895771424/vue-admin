@@ -9,7 +9,11 @@ export interface IUserInfo {
   permission: string[];
 }
 
-export const getUserInfoApi = (data: any) => {
+export interface ILoginData {
+  username: string;
+  password: string;
+}
+export const getUserInfoApi = (data: ILoginData) => {
   return http.request<UserInterface>({
     method: 'post',
     url: '/api/user',

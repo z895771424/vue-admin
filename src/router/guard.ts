@@ -1,5 +1,8 @@
-import { useUserStore } from '@/store/user';
-import store, { IData } from '@/utils/store';
+import { CacheEnum } from '@/enum/cacheEnum';
+import { useMenuStore } from '@/store/menuStore';
+import { useUserStore } from '@/store/userStore';
+import utils from '@/utils';
+import store from '@/utils/store';
 import { RouteLocationNormalized, Router } from 'vue-router';
 
 class Guard {
@@ -13,15 +16,21 @@ class Guard {
       if (this.isGuest(to) === false) return from;
       // 都通过之后请求用户信息
       await useUserStore().getUserInfo();
+      // 添加历史菜单
+      // console.log(to);
     });
   }
 
   private getToken() {
-    return store.get('token')?.token;
+    return store.get(CacheEnum.TOKEN_NAME)?.token;
   }
 
   private isLogin(route: RouteLocationNormalized) {
-    return Boolean(!route.meta.auth || (route.meta.auth && this.getToken()));
+    const state = Boolean(!route.meta.auth || (route.meta.auth && this.getToken()));
+    if (state === false) {
+      utils.store.set(CacheEnum.REDIRECT_ROUTE_NAME, route.name);
+    }
+    return state;
   }
 
   private isGuest(route: RouteLocationNormalized) {

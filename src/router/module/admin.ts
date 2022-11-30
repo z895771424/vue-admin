@@ -4,6 +4,7 @@ export default [
   {
     name: 'admin',
     path: '/admin',
+    redirect: '/admin/home',
     meta: { auth: true },
     component: () => import('@/layouts/admin.vue'),
     children: [

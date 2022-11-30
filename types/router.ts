@@ -5,9 +5,8 @@ declare module 'vue-router' {
     auth?: boolean;
     guest?: boolean;
     // 显示侧边栏
-    show?: boolean;
-    title?: string;
-    icon?: string;
-    acitve?: boolean;
+    menu?: IMenu;
+    enterClass?: string;
+    leaveClass?: string;
   }
 }

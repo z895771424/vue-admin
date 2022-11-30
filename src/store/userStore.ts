@@ -1,4 +1,5 @@
 import { getInfoApi, IUserInfo } from '@/apis/userApi';
+import { CacheEnum } from '@/enum/cacheEnum';
 import store from '@/utils/store';
 import { defineStore } from 'pinia';
 
@@ -10,7 +11,7 @@ export const useUserStore = defineStore('userStore', {
   actions: {
     async getUserInfo() {
       try {
-        const token = store.get('token')?.token;
+        const token = store.get(CacheEnum.TOKEN_NAME)?.[CacheEnum.TOKEN_NAME];
         if (token) {
           const { result } = await getInfoApi();
           this.userInfo = result;

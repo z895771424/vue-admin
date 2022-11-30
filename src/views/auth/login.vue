@@ -1,22 +1,16 @@
 <script lang="ts" setup>
-import { getUserInfoApi } from '@/apis/userApi';
+import { ILoginData } from '@/apis/userApi';
 import v from '@/plugins/validate';
-import store from '@/utils/store';
-import { useRouter } from 'vue-router';
+import utils from '@/utils';
 
-const router = useRouter();
 const { Form, Field, ErrorMessage } = v;
 const schema = {
   username: v.yup.string().email().required().label('账号'),
   password: v.yup.string().min(3).max(16).required().label('密码')
 };
 
-const onSubmit = async (value: any) => {
-  const {
-    result: { token }
-  } = await getUserInfoApi(value);
-  store.set('token', { expire: 100000, token });
-  router.push({ name: 'home' });
+const onSubmit = async (values: ILoginData) => {
+  utils.user.login(values);
 };
 </script>
 

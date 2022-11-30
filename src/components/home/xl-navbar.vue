@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { useUserStore } from '@/store/user';
-
-interface INavbar {
-  title: string;
-  path?: string;
-}
+import { useUserStore } from '@/store/userStore';
+import utils from '@/utils';
+const logout = utils.user.logout;
 
 interface IHoverItem {
   title: string;
@@ -13,24 +10,16 @@ interface IHoverItem {
 
 const navbarList = [
   {
+    path: '/',
     title: '编辑器'
-  },
-  {
-    title: '编辑器1'
-  },
-  {
-    title: '编辑器2'
-  },
-  {
-    title: '编辑器3'
   }
-] as INavbar[];
+];
 
 const hoverList: IHoverItem[] = [
   { title: '学习内容', icon: 'fab fa-bitbucket' },
   { title: '课程设计', icon: 'fab fa-black-tie' },
   { title: '精选内容', icon: 'fab fa-buysellads' },
-  { title: '退出登录', icon: 'fab fa-dailymotion' }
+  { title: '退出登录', icon: 'fas fa-door-closed' }
 ];
 
 // 状态管理工具返回回来的响应式数据
@@ -48,7 +37,8 @@ const userInfo = useUserStore().userInfo;
         class="absolute translate-y-24 -translate-x-4 border bg-white shadow-md rounded-sm px-3 pb-2 whitespace-nowrap cursor-pointer hidden group-hover:block">
         <nav class="pt-0 border-b border-b-white duration-150 hover:text-green-800" v-for="(item, index) of hoverList" :key="index">
           <i class="mr-2 p-1 py-2" :class="item.icon"></i>
-          <span>{{ item.title }}</span>
+          <span v-if="item.title === '退出登录'" @click="logout">{{ item.title }}</span>
+          <span v-else>{{ item.title }}</span>
         </nav>
       </section>
     </div>
