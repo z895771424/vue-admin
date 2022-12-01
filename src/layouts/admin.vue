@@ -10,10 +10,10 @@ import { Transition } from 'vue';
     <XlAside class="w-[240px] bg-gray-700 hidden md:block"></XlAside>
     <article class="bg-slate-300 grid grid-rows-[auto_1fr]">
       <div>
-        <xl-navbar class="pytepx-6 bg-white"></xl-navbar>
-        <xl-historylink class="m-2 p-2 rounded-[4px]"></xl-historylink>
+        <xl-navbar class="py-2 px-3 bg-white"></xl-navbar>
+        <xl-historylink class="m-2 mb-0 p-2 rounded-[4px]"></xl-historylink>
       </div>
-      <div class="mx-2 rounded-[4px] relative overflow-y-auto">
+      <div class="mx-2 mt-2 rounded-[4px] relative overflow-y-auto">
         <router-view #default="{ Component, route }">
           <Transition
             appear

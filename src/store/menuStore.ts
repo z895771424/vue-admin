@@ -1,13 +1,14 @@
 import { CacheEnum } from '@/enum/cacheEnum';
 import utils from '@/utils';
 import { defineStore } from 'pinia';
-import { RouteLocationNormalized, RouteRecordRaw, useRoute, useRouter } from 'vue-router';
+import { RouteLocationNormalized, RouteRecordNormalized, RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 
 export const useMenuStore = defineStore('menuStore', {
   state: () => ({
     menus: [] as IMenu[],
     historyMenu: [] as IMenu[],
-    currentMenuClick:''
+    close: false,
+    breadList: null as null | RouteRecordNormalized[]
   }),
   actions: {
     init() {
@@ -24,6 +25,8 @@ export const useMenuStore = defineStore('menuStore', {
           this.historyMenu.pop();
         }
         this.setHistoryInStore();
+        // 获取当前面包屑导航
+        this.breadList = route.matched;
       }
     },
     removeHistoryMenu(menu: IMenu) {

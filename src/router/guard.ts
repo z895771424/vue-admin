@@ -16,8 +16,6 @@ class Guard {
       if (this.isGuest(to) === false) return from;
       // 都通过之后请求用户信息
       await useUserStore().getUserInfo();
-      // 添加历史菜单
-      // console.log(to);
     });
   }
 

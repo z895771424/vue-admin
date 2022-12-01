@@ -3,7 +3,7 @@ import { CacheEnum } from '@/enum/cacheEnum';
 import router from '@/router';
 import { useMenuStore } from '@/store/menuStore';
 import utils from '@/utils';
-import { onMounted, watch } from 'vue';
+import { watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const routeJump = (menu: IMenu) => {
@@ -42,7 +42,8 @@ watch(
   () => route.name,
   () => {
     useMenuStore().addHistoryMenu(route);
-  }
+  },
+  { immediate: true }
 );
 </script>
 <template>

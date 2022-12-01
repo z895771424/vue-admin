@@ -5,6 +5,7 @@ import { ref } from 'vue';
 
 const menuStore = useMenuStore();
 menuStore.init();
+
 const menus = menuStore.menus;
 
 const resetMenu = () => {
@@ -30,15 +31,14 @@ let homeStatus = ref(false);
 const handleHome = () => {
   resetMenu();
   homeStatus.value = !homeStatus.value;
-  console.log(homeStatus);
   router.push({ name: 'admin.home' });
 };
 </script>
 <template>
-  <div>
-    <header class="flex justify-between items-center px-8 py-4">
-      <i class="fab fa-discord text-4xl text-white"></i>
-      <span class="text-xl text-white">向往生活 </span>
+  <div class="content" :class="{ close: useMenuStore().close }">
+    <header class="flex justify-between items-center px-4 py-4">
+      <i class="fab fa-discord text-4xl text-white ml-4"></i>
+      <span class="text-xl text-white mr-4">向往生活 </span>
     </header>
     <div class="menu text-white">
       <dl class="px-2">
@@ -49,28 +49,67 @@ const handleHome = () => {
           </section>
         </dt>
       </dl>
-      <dl class="px-2" v-for="(menu, index) in menus" :key="index">
+      <dl class="px-2 group" v-for="(menu, index) in menus" :key="index">
         <dt @click="handleClick(menu)">
           <section class="flex items-center">
-            <i class="mr-3 text-xl" :class="menu.icon"></i>
+            <i class="mr-3 text-2xl" :class="menu.icon"></i>
             <span>{{ menu.title }}</span>
           </section>
           <i class="fas fa-angle-right duration-200" :class="{ 'rotate-90': menu.isClick }"></i>
         </dt>
-
-        <dd
-          :class="{ actived: cMenu.isClick }"
-          v-for="(cMenu, cIndex) in menu.children"
-          :key="cIndex"
-          v-show="menu.isClick"
-          @click="handleClick(menu, cMenu)">
-          {{ cMenu.title }}
-        </dd>
+        <div class="dd-child group-hover:!block">
+          <dd
+            :class="{ actived: cMenu.isClick }"
+            v-for="(cMenu, cIndex) in menu.children"
+            :key="cIndex"
+            v-show="menu.isClick || useMenuStore().close"
+            @click="handleClick(menu, cMenu)">
+            {{ cMenu.title }}
+          </dd>
+        </div>
       </dl>
     </div>
   </div>
 </template>
 <style scoped lang="scss">
+.content {
+  @apply duration-150;
+  &.close {
+    @apply w-[78px];
+    header {
+      i {
+        @apply m-auto;
+      }
+      span {
+        @apply hidden;
+      }
+    }
+
+    dl {
+      @apply relative;
+    }
+    dt {
+      > i {
+        @apply hidden;
+      }
+      section {
+        @apply m-auto;
+
+        i {
+          @apply mr-0;
+        }
+
+        span {
+          @apply hidden;
+        }
+      }
+    }
+
+    .dd-child {
+      @apply absolute hidden bg-slate-700 rounded-r-md rounded-br-md  z-20 w-[200px] left-[90%] -top-3 peer-hover:bg-red-700;
+    }
+  }
+}
 .menu {
   .actived {
     @apply bg-blue-500;
