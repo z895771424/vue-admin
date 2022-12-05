@@ -1,5 +1,4 @@
 import { CacheEnum } from '@/enum/cacheEnum';
-import { useMenuStore } from '@/store/menuStore';
 import { useUserStore } from '@/store/userStore';
 import utils from '@/utils';
 import store from '@/utils/store';
@@ -14,9 +13,7 @@ class Guard {
       if (this.isLogin(to) === false) return { name: 'auth.login' };
       // 游客登录后不可以跳回登录页面
       if (this.isGuest(to) === false) return from;
-      // 都通过之后请求用户信息
-      await useUserStore().getUserInfo();
-    });
+          });
   }
 
   private getToken() {

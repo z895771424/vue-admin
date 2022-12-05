@@ -6,13 +6,14 @@ interface UserInterface {
 export interface IUserInfo {
   name: string;
   head: string;
-  permission: string[];
+  permissons: string[];
 }
 
 export interface ILoginData {
   username: string;
   password: string;
 }
+
 export const getUserInfoApi = (data: ILoginData) => {
   return http.request<UserInterface>({
     method: 'post',

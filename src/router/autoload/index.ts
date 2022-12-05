@@ -1,14 +1,19 @@
 import viewAutoloadRouter from './view';
 import moduleAutoloadRouter from './module';
-import { RouteRecordRaw } from 'vue-router';
+import { Router, RouteRecordRaw } from 'vue-router';
 import env from '@/utils/env';
+import { useUserStore } from '@/store/userStore';
 
-let router = [] as RouteRecordRaw[];
+let routes: RouteRecordRaw[] = env.VITE_ROUTE_AUTOLOAD ? viewAutoloadRouter : moduleAutoloadRouter;
 
-if (env.VITE_ROUTE_AUTOLOAD) {
-  router = viewAutoloadRouter;
-} else {
-  router = moduleAutoloadRouter;
+function autoload(router: Router) {
+  const permissons = useUserStore().userInfo?.permissons;
+  routes.forEach((r) => {
+    r.children = r.children?.filter((cRoute) => {
+      return cRoute.meta?.permission ? permissons?.includes(cRoute.meta.permission) : true;
+    });
+    router.addRoute(r);
+  });
 }
 
-export default router;
+export default autoload;

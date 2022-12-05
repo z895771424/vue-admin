@@ -36,7 +36,7 @@ export default [
         result: {
           name: '兴隆',
           head: '/images/head.jpg',
-          permisson: []
+          permissons: ['baseEditor','markdownEditor']
         }
       };
     }

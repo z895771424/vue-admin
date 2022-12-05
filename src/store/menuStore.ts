@@ -1,7 +1,8 @@
 import { CacheEnum } from '@/enum/cacheEnum';
+import router from '@/router';
 import utils from '@/utils';
 import { defineStore } from 'pinia';
-import { RouteLocationNormalized, RouteRecordNormalized, RouteRecordRaw, useRoute, useRouter } from 'vue-router';
+import { RouteLocationNormalized, RouteRecordNormalized, useRouter } from 'vue-router';
 
 export const useMenuStore = defineStore('menuStore', {
   state: () => ({
@@ -35,8 +36,14 @@ export const useMenuStore = defineStore('menuStore', {
       this.setHistoryInStore();
     },
     setHistoryInStore() {
+      const historyStore = useMenuStore().historyMenu;
+      const historyStoreFilter = historyStore.filter((cRoute) => {
+        console.log(router.getRoutes().some((pRoute) => pRoute.name === cRoute.routeName));
+        return router.getRoutes().some((pRoute) => pRoute.name === cRoute.routeName) ? true : false;
+      });
+      console.log(historyStoreFilter);
       utils.store.set(CacheEnum.HISTORY_MENU_NAME, null);
-      utils.store.set(CacheEnum.HISTORY_MENU_NAME, useMenuStore().historyMenu);
+      utils.store.set(CacheEnum.HISTORY_MENU_NAME, historyStoreFilter);
     },
     getMenus() {
       useRouter()

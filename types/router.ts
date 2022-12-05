@@ -6,6 +6,7 @@ declare module 'vue-router' {
     guest?: boolean;
     // 显示侧边栏
     menu?: IMenu;
+    permission?: string;
     enterClass?: string;
     leaveClass?: string;
   }

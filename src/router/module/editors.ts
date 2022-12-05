@@ -11,8 +11,9 @@ export default [
         name: 'editor.baseEditor',
         path: 'baseEditor',
         meta: {
+          permission: 'baseEditor',
           menu: {
-            title: '基础文本编辑器'
+            title: '基础文本编辑器',
           }
         },
         component: () => import('@/views/editor/baseEditor.vue')
@@ -21,6 +22,7 @@ export default [
         name: 'editor.markdown',
         path: 'markdown',
         meta: {
+          permission:'markdownEditor',
           menu: {
             title: 'Markdown编辑器'
           }
