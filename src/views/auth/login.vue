@@ -9,8 +9,8 @@ const schema = {
   password: v.yup.string().min(3).max(16).required().label('密码')
 };
 
-const onSubmit = async (values: ILoginData) => {
-  utils.user.login(values);
+const onSubmit = async (values: any) => {
+  await utils.user.login(values);
 };
 </script>
 

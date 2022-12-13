@@ -11,6 +11,9 @@ export async function login(values: ILoginData) {
   store.set(CacheEnum.TOKEN_NAME, { token }, 100000);
 
   const routerName = store.get(CacheEnum.REDIRECT_ROUTE_NAME) ?? 'home';
+
+  await useUserStore().getUserInfo();
+
   router.push({ name: routerName });
 }
 

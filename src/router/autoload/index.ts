@@ -1,6 +1,6 @@
 import viewAutoloadRouter from './view';
 import moduleAutoloadRouter from './module';
-import { Router, RouteRecordRaw } from 'vue-router';
+import { Router, RouteRecordRaw,useRouter } from 'vue-router';
 import env from '@/utils/env';
 import { useUserStore } from '@/store/userStore';
 
@@ -14,6 +14,7 @@ function autoload(router: Router) {
     });
     router.addRoute(r);
   });
+  router.isReady()
 }
 
 export default autoload;

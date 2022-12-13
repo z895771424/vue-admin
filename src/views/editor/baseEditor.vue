@@ -1,7 +1,9 @@
-<script setup lang='ts'>
+<script setup lang="ts">
+import editor from '@/components/wangEditor/editor.vue';
 </script>
 <template>
-  <div>baseEditor</div>
+  <div>
+    <editor></editor>
+  </div>
 </template>
-<style scoped>
-</style>
+<style scoped></style>

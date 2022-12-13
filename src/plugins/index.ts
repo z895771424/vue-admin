@@ -1,13 +1,14 @@
 import { App } from 'vue';
 import { setupTailwindcss } from './tailwindcss';
 import _ from 'lodash';
-import { setupElementPlus } from './elementplus';
+// import { setupElementPlus } from './elementplus';
 import { setupPinia } from './pinia';
 
 export const setupPlugins = (app: App) => {
   setupTailwindcss();
-  setupElementPlus(app);
-  autoRegisterComponent(app);
+  // setupElementPlus(app);
+  // 已经有了组件全局注册
+  // autoRegisterComponent(app);
   setupPinia(app);
 };
 
@@ -18,6 +19,6 @@ function autoRegisterComponent(app: App) {
     let name = key.split('/').pop()?.split('.')[0] as string;
     // 转换为驼峰命名
     name = _.camelCase(name);
-    app.component(name, component.default);
+    app.component(name, (component as any).default);
   });
 }

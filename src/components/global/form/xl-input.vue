@@ -2,7 +2,7 @@
 const props = defineProps(['modelValue']);
 </script>
 <template>
-  <input class="xl-input" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" type="text" />
+  <input class="xl-input" :value="modelValue" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" type="text" />
 </template>
 <style scoped lang="scss">
 .xl-input {

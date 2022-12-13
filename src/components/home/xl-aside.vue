@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import router from '@/router';
+import autoload from '@/router/autoload';
 import { useMenuStore } from '@/store/menuStore';
-import { ref } from 'vue';
-
+import { useUserStore } from '@/store/userStore';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 const menuStore = useMenuStore();
+
 menuStore.init();
+console.log('aside渲染成功');
 
 const menus = menuStore.menus;
 
@@ -33,6 +37,16 @@ const handleHome = () => {
   homeStatus.value = !homeStatus.value;
   router.push({ name: 'admin.home' });
 };
+
+const addRoute = async () => {
+  // const router = useRouter();
+  // await useUserStore().getUserInfo();
+  // autoload(router);
+};
+
+onMounted(() => {
+  addRoute();
+});
 </script>
 <template>
   <div class="content" :class="{ close: useMenuStore().close }">

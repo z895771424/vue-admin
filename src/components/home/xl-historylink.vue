@@ -43,7 +43,7 @@ watch(
   () => {
     useMenuStore().addHistoryMenu(route);
   },
-  { immediate: true }
+  // { immediate: true }
 );
 </script>
 <template>

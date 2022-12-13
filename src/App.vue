@@ -1,9 +1,4 @@
-<script  lang="ts">
-// export {}
-// import { getUserInfoApi } from './apis/user';
-// const res = await getUserInfoApi();
-// console.log(res.result);
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <router-view />

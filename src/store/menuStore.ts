@@ -38,14 +38,13 @@ export const useMenuStore = defineStore('menuStore', {
     setHistoryInStore() {
       const historyStore = useMenuStore().historyMenu;
       const historyStoreFilter = historyStore.filter((cRoute) => {
-        console.log(router.getRoutes().some((pRoute) => pRoute.name === cRoute.routeName));
         return router.getRoutes().some((pRoute) => pRoute.name === cRoute.routeName) ? true : false;
       });
-      console.log(historyStoreFilter);
       utils.store.set(CacheEnum.HISTORY_MENU_NAME, null);
       utils.store.set(CacheEnum.HISTORY_MENU_NAME, historyStoreFilter);
     },
     getMenus() {
+      this.menus = [];
       useRouter()
         .getRoutes()
         .filter((route) => route.children.length && route?.meta.menu)
